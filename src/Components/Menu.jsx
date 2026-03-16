@@ -48,7 +48,7 @@ const Menu = ({ togglePanel, isOpen, navItems }) => {
 
   const handleLoginClick = () => {
     navigate("/login"); // 👈 navigate to login page
-    setIsMenu(false);   // 👈 close menu after clicking
+    setIsMenu(false);   
   }; 
 
   return (
