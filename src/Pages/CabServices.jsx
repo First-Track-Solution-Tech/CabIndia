@@ -1,7 +1,6 @@
 // import Carousel from "../Components/Carousel"
 // import Footer from "../Components/Footer"
 
-
 // const RightServiceCard = () => {
 //     return (
 //         <>
@@ -47,8 +46,6 @@
 //         </>
 //     )
 // }
-
-
 
 // const CabServices = () => {
 //   return (

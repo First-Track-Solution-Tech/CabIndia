@@ -5,7 +5,7 @@ import Welcome from "./Components/Welcome";
 import Header from "./Components/Header";
 // import SideBar from "./Components/SideBar";
 import Footer from "./Components/Footer";
-
+import BottomNav from "./Components/BottomNav";
 
 import Login from "./Pages/Login";
 import RiderLogin from "./Pages/RiderLogin";
@@ -70,8 +70,9 @@ function App() {
 
       </Routes>
           
-
+<BottomNav />
       {!shouldHideFooter && <Footer />}
+      
     </>
   );
 }
