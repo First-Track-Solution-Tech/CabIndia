@@ -4,7 +4,7 @@ import { Home, LayoutGrid, Clock, UserCircle, Phone, X, Car, User } from "lucide
 
 const navItems = [
   { id: "home",     label: "Home",     icon: Home,       path: "/" },
-  { id: "services", label: "Services", icon: LayoutGrid, path: "/services" },
+  { id: "services", label: "Services", icon: LayoutGrid, path: "/service" },
   { id: "rides",    label: "My Rides", icon: Clock,      path: "/rides" },
   { id: "account",  label: "Account",  icon: UserCircle, path: "/account" },
   { id: "contact",  label: "Contact",  icon: Phone,      path: "/contact" },
@@ -174,9 +174,8 @@ export default function BottomNav() {
 
               {/* Rider Login */}
               <button
-                onClick={() => { closePopup(); navigate("/rider-login"); }}
-                className="w-full flex items-center gap-3 bg-gray-900 text-white border border-yellow-400/25 rounded-2xl px-4 py-3.5 font-bold text-sm tracking-wide active:scale-[0.98] transition-all duration-150 hover:border-yellow-400/50 hover:bg-gray-800"
-              >
+                onClick={() => { closePopup(); navigate("/rider"); }}
+                     className="w-full flex items-center gap-3 bg-gray-900 text-white border border-yellow-400/25 rounded-2xl px-4 py-3.5 font-bold text-sm tracking-wide active:scale-[0.98] transition-all duration-150 hover:border-yellow-400/50 hover:bg-gray-800">
                 <span className="w-9 h-9 rounded-xl bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center flex-shrink-0 text-yellow-400">
                   <Car size={17} />
                 </span>

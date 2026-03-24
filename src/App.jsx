@@ -6,7 +6,7 @@ import Header from "./Components/Header";
 // import SideBar from "./Components/SideBar";
 import Footer from "./Components/Footer";
 import BottomNav from "./Components/BottomNav";
-
+import ServiceSection from "./Components/ServiceSection";
 import Login from "./Pages/Login";
 import RiderLogin from "./Pages/RiderLogin";
 import CustomerRegister from "./Pages/CustomerRegister";
@@ -53,7 +53,7 @@ function App() {
          <Route path="/register/customer" element={<CustomerRegister />} />
         <Route path="/register/join-captain-form" element={<JoinCaptainForm />} />
        
-      
+        <Route path="/service" element={<ServiceSection/>} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/join-captain-form" element={<JoinCaptainForm/>} />
         <Route path="/contact" element={<Contact />} />

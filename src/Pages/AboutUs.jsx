@@ -8,7 +8,7 @@ import JoinAsCaptain from '../Components/JoinAsCaptain'
 const AboutUs = () => {
   return (
    <>
-    <Carousel images={['logo.png', 'welcome.jpg', 'bike.png']} />
+    <Carousel />
     <LeftAboutUs />
     <RightAboutUs />
     <MeetOurCaptains/>
