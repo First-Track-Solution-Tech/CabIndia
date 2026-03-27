@@ -5,7 +5,7 @@ import { Home, LayoutGrid, Clock, UserCircle, Phone, X, Car, User } from "lucide
 const navItems = [
   { id: "home",     label: "Home",     icon: Home,       path: "/" },
   { id: "services", label: "Services", icon: LayoutGrid, path: "/service" },
-  { id: "rides",    label: "My Rides", icon: Clock,      path: "/rides" },
+  { id: "blogs",    label: "Blogs", icon: Clock,      path: "/blog" },
   { id: "account",  label: "Account",  icon: UserCircle, path: "/account" },
   { id: "contact",  label: "Contact",  icon: Phone,      path: "/contact" },
 ];
