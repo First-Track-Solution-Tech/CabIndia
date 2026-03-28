@@ -48,6 +48,7 @@ export default function LeftAboutUs() {
               </div>
 
               <p className="text-gray-400 text-base leading-relaxed">
+                CabIndia is a smart mobility platform developed by First Track Technology Solution, delivering reliable, efficient, and user-friendly cab services for seamless travel experiences.
                 CabIndia was born from a simple belief — that every person in every
                 corner of India deserves a{" "}
                 <span className="text-white font-semibold">safe, affordable, and dignified</span>{" "}
@@ -79,7 +80,7 @@ export default function LeftAboutUs() {
                   TP
                 </div>
                 <div>
-                  <p className="text-white text-xs font-bold">Tejas Parekh</p>
+                  <p className="text-white text-xs font-bold">Tejash Parekh</p>
                   <p className="text-gray-600 text-[10px] tracking-wide uppercase">
                     Founder & CEO, CabIndia
                   </p>

@@ -121,7 +121,7 @@ export default function ServiceSection() {
 
       {/* ── Heading ── */}
       <div className="relative z-10 text-center mb-16">
-        <p className="text-[10px] font-mono text-gray-600 uppercase tracking-[0.3em] mb-3">
+        <p className="text-[12px] font-mono uppercase tracking-[0.3em] mb-3">
           CabIndia Services
         </p>
         <h3 className="text-5xl md:text-[64px] font-black tracking-tight leading-[1]">
@@ -238,7 +238,7 @@ export default function ServiceSection() {
                 "px-3 py-1.5 rounded-full text-[10px] font-mono font-semibold uppercase tracking-wider border transition-all duration-200",
                 idx === active
                   ? "bg-yellow-400 text-black border-yellow-400"
-                  : "bg-transparent text-gray-600 border-white/8 hover:border-white/25 hover:text-gray-300",
+                  : "bg-transparent text-white border-white/8 hover:border-white/25 hover:text-gray-300",
               ].join(" ")}
             >
               {s.emoji} {s.name}

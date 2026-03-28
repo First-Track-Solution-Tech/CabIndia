@@ -138,7 +138,7 @@ export default function JoinAsCaptain() {
                   <ChevronRight size={16} />
                 </button>
                 <p className="text-center text-gray-700 text-[10px] tracking-wide">
-                   Open to all verified drivers
+                    Open to all verified drivers
                 </p>
               </div>
             </div>
