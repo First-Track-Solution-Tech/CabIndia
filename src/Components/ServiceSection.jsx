@@ -121,14 +121,23 @@ export default function ServiceSection() {
 
       {/* ── Heading ── */}
       <div className="relative z-10 text-center mb-16">
-        <p className="text-[12px] font-mono uppercase tracking-[0.3em] mb-3">
-          CabIndia Services
-        </p>
+  <p className="text-[12px] font-mono uppercase tracking-[0.3em] mb-3 flex justify-center items-center gap-2">
+    
+    <span className="flex">
+      Cab
+      <span className="text-orange-400">In</span>
+      d
+      <span className="text-green-400">ia</span>
+    </span>
+
+    <span className="text-white">SERVICES</span>
+
+  </p>
         <h3 className="text-5xl md:text-[64px] font-black tracking-tight leading-[1]">
           Ride{" "}
           <span className="text-yellow-400 italic">Your Way</span>
         </h3>
-        <p className="mt-4 text-gray-500 text-xs uppercase tracking-[0.2em] font-mono">
+        <p className="mt-4 text-white-500 text-xs uppercase tracking-[0.2em] font-mono">
           Select a service · tap active card for details
         </p>
       </div>
@@ -169,7 +178,7 @@ export default function ServiceSection() {
               }}
             >
               {/* Card index */}
-              <span className="absolute top-4 right-4 text-[9px] font-mono text-gray-700 tracking-widest">
+              <span className="absolute top-4 right-4 text-[9px] font-mono text-white-700 tracking-widest">
                 0{s.id}/06
               </span>
 
@@ -188,7 +197,7 @@ export default function ServiceSection() {
                   isActive ? "bg-yellow-400" : "bg-white/5",
                 ].join(" ")}
               >
-                <Icon size={18} className={isActive ? "text-black" : "text-gray-500"} />
+                <Icon size={18} className={isActive ? "text-black" : "text-white-500"} />
               </div>
 
               {/* Decorative emoji */}
@@ -206,7 +215,7 @@ export default function ServiceSection() {
                 >
                   {s.name}
                 </div>
-                <div className="text-[9px] text-gray-600 font-mono uppercase tracking-wider mt-0.5 leading-snug">
+                <div className="text-[9px] text-white-600 font-mono uppercase tracking-wider mt-0.5 leading-snug">
                   {s.tagline}
                 </div>
                 <div
@@ -214,7 +223,7 @@ export default function ServiceSection() {
                     "mt-2.5 inline-block text-[9px] font-bold font-mono px-2.5 py-1 rounded-full",
                     isActive
                       ? "bg-yellow-400 text-black"
-                      : "bg-white/5 text-gray-500",
+                      : "bg-white/5 text-white-500",
                   ].join(" ")}
                 >
                   {s.price}
@@ -238,7 +247,7 @@ export default function ServiceSection() {
                 "px-3 py-1.5 rounded-full text-[10px] font-mono font-semibold uppercase tracking-wider border transition-all duration-200",
                 idx === active
                   ? "bg-yellow-400 text-black border-yellow-400"
-                  : "bg-transparent text-white border-white/8 hover:border-white/25 hover:text-gray-300",
+                  : "bg-transparent text-white border-white/8 hover:border-white/25 hover:text-white-300",
               ].join(" ")}
             >
               {s.emoji} {s.name}
@@ -262,7 +271,7 @@ export default function ServiceSection() {
                   <h3 className="text-2xl font-black text-yellow-400 tracking-tight leading-none">
                     {svc.name}
                   </h3>
-                  <p className="text-[10px] text-gray-500 font-mono uppercase tracking-widest mt-0.5">
+                  <p className="text-[10px] text-white-500 font-mono uppercase tracking-widest mt-0.5">
                     {svc.tagline}
                   </p>
                 </div>
@@ -270,7 +279,7 @@ export default function ServiceSection() {
 
               <div className="flex items-center gap-5">
                 <div className="text-right">
-                  <div className="text-[9px] text-gray-600 font-mono uppercase tracking-widest">Est. Price</div>
+                  <div className="text-[9px] text-white-600 font-mono uppercase tracking-widest">Est. Price</div>
                   <div className="text-xl font-black font-mono text-white">{svc.price}</div>
                 </div>
 
@@ -299,7 +308,7 @@ export default function ServiceSection() {
                 </div>
                 <button
                   onClick={() => setShowDetail(false)}
-                  className="text-[9px] font-mono text-gray-700 hover:text-gray-400 transition-colors uppercase tracking-widest shrink-0 mt-0.5"
+                  className="text-[9px] font-mono text-white-700 hover:text-gray-400 transition-colors uppercase tracking-widest shrink-0 mt-0.5"
                 >
                   ← Back
                 </button>
@@ -309,15 +318,15 @@ export default function ServiceSection() {
               <div className="grid grid-cols-3 gap-3">
                 <div className="bg-yellow-400/5 border border-yellow-400/12 rounded-xl p-4 text-center">
                   <div className="text-lg font-black font-mono text-yellow-400">{svc.stat1.value}</div>
-                  <div className="text-[9px] text-gray-600 font-mono uppercase tracking-wider mt-1">{svc.stat1.label}</div>
+                  <div className="text-[9px] text-white-600 font-mono uppercase tracking-wider mt-1">{svc.stat1.label}</div>
                 </div>
                 <div className="bg-yellow-400/5 border border-yellow-400/12 rounded-xl p-4 text-center">
                   <div className="text-lg font-black font-mono text-yellow-400">{svc.stat2.value}</div>
-                  <div className="text-[9px] text-gray-600 font-mono uppercase tracking-wider mt-1">{svc.stat2.label}</div>
+                  <div className="text-[9px] text-white-600 font-mono uppercase tracking-wider mt-1">{svc.stat2.label}</div>
                 </div>
                 <div className="bg-white/[0.03] border border-white/8 rounded-xl p-4 text-center">
                   <div className="text-lg font-black font-mono text-white">{svc.price}</div>
-                  <div className="text-[9px] text-gray-600 font-mono uppercase tracking-wider mt-1">Est. Fare</div>
+                  <div className="text-[9px] text-white-600 font-mono uppercase tracking-wider mt-1">Est. Fare</div>
                 </div>
               </div>
 

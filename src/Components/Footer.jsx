@@ -39,7 +39,7 @@ return (
             <div className="flex flex-col md:w-1/2 w-full items-center justify-center md:p-8 p-4 border-x-2 border-gray-700">
               <div className="lg:text-2xl text-xl font-bold mb-4">IMPORTANT LINKS</div>
               <div className="flex flex-col lg:text-md text-sm">
-                <Link to="/aboutus">About Us</Link>
+                <Link to="/about">About Us</Link>
                 <Link to="/contact">Contact Us</Link>
                 <Link to="/FAQ">FAQ</Link>
                 <Link to="/terms">Terms & Conditions</Link>
