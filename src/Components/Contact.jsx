@@ -18,7 +18,7 @@ const contactInfo = [
     icon: MapPin,
     label: "Head Office",
     value: "Bhubaneswar, Odisha",
-    sub: "Plot 12, Saheed Nagar",
+    sub: " Saheed Nagar",
   },
   {
     icon: Clock,
@@ -72,7 +72,7 @@ export default function ContactPage() {
             Get In{" "}
             <span className="text-yellow-400 italic">Touch</span>
           </h1>
-          <p className="mt-3 text-gray-400 text-sm md:text-base max-w-md">
+          <p className="mt-3 text-white text-sm md:text-base max-w-md">
             Our team is available round the clock — for rides, partnerships, or just a hello.
           </p>
         </div>
@@ -90,7 +90,7 @@ export default function ContactPage() {
                 We're always{" "}
                 <span className="text-yellow-400">reachable</span>
               </h2>
-              <p className="text-gray-500 text-sm mt-2 leading-relaxed">
+              <p className="text-white text-sm mt-2 leading-relaxed">
                 Whether you have a complaint, a suggestion, or a business inquiry —
                 drop us a message and we'll get back to you fast.
               </p>
@@ -105,15 +105,15 @@ export default function ContactPage() {
                     key={item.label}
                     className="flex items-start gap-4 bg-gray-900 border border-gray-800 hover:border-yellow-400/40 rounded-2xl p-4 transition-all duration-300 group"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center flex-shrink-0 text-yellow-400 group-hover:bg-yellow-400 group-hover:text-gray-950 transition-all duration-300">
+                    <div className="w-10 h-10 rounded-xl bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center flex-shrink-0 text-yellow-400 group-hover:bg-yellow-400 group-hover:text-white transition-all duration-300">
                       <Icon size={17} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold tracking-[0.15em] text-gray-500 uppercase">
+                      <p className="text-[10px] font-bold tracking-[0.15em] text-white uppercase">
                         {item.label}
                       </p>
                       <p className="text-sm font-bold text-white mt-0.5">{item.value}</p>
-                      <p className="text-[11px] text-gray-600 mt-0.5">{item.sub}</p>
+                      <p className="text-[11px] text-white mt-0.5">{item.sub}</p>
                     </div>
                   </div>
                 );
@@ -126,7 +126,7 @@ export default function ContactPage() {
                 "Your ride, your way —<br />
                 <span className="text-white">always on time."</span>
               </p>
-              <p className="text-gray-600 text-xs mt-2">— CabIndia Promise</p>
+              <p className="text-white text-xs mt-2">— CabIndia Promise</p>
             </div>
           </div>
 
@@ -145,7 +145,7 @@ export default function ContactPage() {
                       Send us a{" "}
                       <span className="text-yellow-400">message</span>
                     </h3>
-                    <p className="text-gray-500 text-xs mt-1">
+                    <p className="text-white text-xs mt-1">
                       Fill in the details below and we'll respond ASAP.
                     </p>
                   </div>
@@ -156,7 +156,7 @@ export default function ContactPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {/* Name */}
                       <div className="flex flex-col gap-1.5">
-                        <label className="text-[10px] font-bold tracking-[0.15em] text-gray-500 uppercase">
+                        <label className="text-[10px] font-bold tracking-[0.15em] text-white uppercase">
                           Your Name
                         </label>
                         <div
@@ -183,7 +183,7 @@ export default function ContactPage() {
 
                       {/* Email */}
                       <div className="flex flex-col gap-1.5">
-                        <label className="text-[10px] font-bold tracking-[0.15em] text-gray-500 uppercase">
+                        <label className="text-[10px] font-bold tracking-[0.15em] text-white uppercase">
                           Email Address
                         </label>
                         <div
@@ -211,7 +211,7 @@ export default function ContactPage() {
 
                     {/* Phone */}
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-[10px] font-bold tracking-[0.15em] text-gray-500 uppercase">
+                      <label className="text-[10px] font-bold tracking-[0.15em] text-white uppercase">
                         Phone Number
                       </label>
                       <div
@@ -222,7 +222,7 @@ export default function ContactPage() {
                             : "border-gray-700",
                         ].join(" ")}
                       >
-                        <span className="flex items-center gap-1.5 px-3 border-r border-gray-700 text-xs font-bold text-gray-400 h-full py-3 bg-gray-800/80 flex-shrink-0">
+                        <span className="flex items-center gap-1.5 px-3 border-r border-gray-700 text-xs font-bold text-white h-full py-3 bg-gray-800/80 flex-shrink-0">
                           🇮🇳 +91
                         </span>
                         <input
@@ -240,7 +240,7 @@ export default function ContactPage() {
 
                     {/* Message */}
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-[10px] font-bold tracking-[0.15em] text-gray-500 uppercase">
+                      <label className="text-[10px] font-bold tracking-[0.15em] text-white uppercase">
                         Message
                       </label>
                       <div
@@ -268,7 +268,7 @@ export default function ContactPage() {
                     {/* Submit */}
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-gray-950 font-black text-sm tracking-wide py-4 rounded-xl transition-all duration-200 active:scale-[0.98] shadow-[0_4px_24px_rgba(250,204,21,0.3)] hover:shadow-[0_6px_32px_rgba(250,204,21,0.45)] mt-1 group relative overflow-hidden"
+                      className="w-full flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-white font-black text-sm tracking-wide py-4 rounded-xl transition-all duration-200 active:scale-[0.98] shadow-[0_4px_24px_rgba(250,204,21,0.3)] hover:shadow-[0_6px_32px_rgba(250,204,21,0.45)] mt-1 group relative overflow-hidden"
                     >
                       <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500 pointer-events-none" />
                       <Send size={16} />
@@ -286,7 +286,7 @@ export default function ContactPage() {
                   <h3 className="text-2xl font-black tracking-tight">
                     Message <span className="text-yellow-400">Sent!</span>
                   </h3>
-                  <p className="text-gray-500 text-sm max-w-xs leading-relaxed">
+                  <p className="text-white text-sm max-w-xs leading-relaxed">
                     Thanks for reaching out. Our team will get back to you within 2 hours.
                   </p>
                   <button

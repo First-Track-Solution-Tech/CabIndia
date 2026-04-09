@@ -68,7 +68,7 @@ export default function RiderLogin() {
                 <h1 className="text-2xl font-black text-white tracking-tight">
                   Rider <span className="text-yellow-400 italic">Login</span>
                 </h1>
-                <p className="text-gray-600 text-xs mt-1.5">
+                <p className="text-white text-xs mt-1.5">
                   Welcome back — sign in to your account
                 </p>
               </div>
@@ -82,7 +82,7 @@ export default function RiderLogin() {
 
               {/* Email / Phone */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold tracking-[0.15em] text-gray-500 uppercase">
+                <label className="text-[10px] font-bold tracking-[0.15em] text-white uppercase">
                   Email or Phone Number <span className="text-yellow-400">*</span>
                 </label>
                 <input
@@ -98,7 +98,7 @@ export default function RiderLogin() {
               {/* Password */}
               <div className="flex flex-col gap-1.5">
                 <div className="flex items-center justify-between">
-                  <label className="text-[10px] font-bold tracking-[0.15em] text-gray-500 uppercase">
+                  <label className="text-[10px] font-bold tracking-[0.15em] text-white uppercase">
                     Password <span className="text-yellow-400">*</span>
                   </label>
                   <Link
@@ -120,7 +120,7 @@ export default function RiderLogin() {
                   <button
                     type="button"
                     onClick={() => setShowPwd(v => !v)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-300 transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-white hover:text-white transition-colors"
                   >
                     {showPwd ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
@@ -131,7 +131,7 @@ export default function RiderLogin() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-gray-950 font-black text-sm tracking-wide py-3.5 rounded-xl mt-2 transition-all duration-200 active:scale-[0.98] shadow-[0_4px_20px_rgba(250,204,21,0.3)] hover:shadow-[0_4px_28px_rgba(250,204,21,0.45)] relative overflow-hidden group disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-white font-black text-sm tracking-wide py-3.5 rounded-xl mt-2 transition-all duration-200 active:scale-[0.98] shadow-[0_4px_20px_rgba(250,204,21,0.3)] hover:shadow-[0_4px_28px_rgba(250,204,21,0.45)] relative overflow-hidden group disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500 pointer-events-none" />
                 {loading ? (
@@ -151,13 +151,13 @@ export default function RiderLogin() {
             {/* ── Divider ── */}
             <div className="flex items-center gap-3 my-5">
               <div className="flex-1 h-px bg-gray-800" />
-              <span className="text-gray-700 text-[10px] font-bold tracking-widest uppercase">or</span>
+              <span className="text-white text-[10px] font-bold tracking-widest uppercase">or</span>
               <div className="flex-1 h-px bg-gray-800" />
             </div>
 
             {/* ── Register link ── */}
             <div className="flex flex-col items-center gap-3">
-              <p className="text-gray-600 text-xs text-center">
+              <p className="text-white text-xs text-center">
                 Don't have an account?{" "}
                 <Link
                   to="/register/join-captain-form"
@@ -171,13 +171,13 @@ export default function RiderLogin() {
               <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-800 to-transparent" />
 
               {/* bottom note */}
-              <p className="text-gray-700 text-[10px] tracking-wide text-center">
+              <p className="text-white text-[10px] tracking-wide text-center">
                 By logging in you agree to CabIndia's{" "}
-                <Link to="/terms" className="text-gray-600 hover:text-gray-400 underline underline-offset-2">
+                <Link to="/terms" className="text-white hover:text-white underline underline-offset-2">
                   Terms
                 </Link>{" "}
                 &{" "}
-                <Link to="/privacy" className="text-gray-600 hover:text-gray-400 underline underline-offset-2">
+                <Link to="/privacy" className="text-white hover:text-white underline underline-offset-2">
                   Privacy Policy
                 </Link>
               </p>

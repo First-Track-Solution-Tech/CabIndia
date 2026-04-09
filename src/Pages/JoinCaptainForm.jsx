@@ -15,7 +15,7 @@ const vehicleTypes   = ["Auto","Bike","Mini Car","Sedan","SUV"];
 
 function Label({ children, required }) {
   return (
-    <label className="text-[11px] font-bold tracking-[0.12em] text-gray-500 uppercase mb-1 block">
+    <label className="text-[11px] font-bold tracking-[0.12em] text-white uppercase mb-1 block">
       {children}{required && <span className="text-yellow-400 ml-0.5">*</span>}
     </label>
   );
@@ -47,10 +47,10 @@ function FileField({ label, name, hint }) {
     <div className="flex flex-col gap-1">
       <Label>{label}</Label>
       <label className="flex items-center gap-3 bg-gray-800 border border-gray-700 hover:border-yellow-400/40 rounded-xl px-4 py-3 cursor-pointer transition-all group">
-        <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-gray-950 transition-all">
+        <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-white transition-all">
           <Upload size={14} />
         </span>
-        <span className="text-sm text-gray-500 truncate">{fileName || hint || "Choose file…"}</span>
+        <span className="text-sm text-white truncate">{fileName || hint || "Choose file…"}</span>
         <input type="file" name={name} className="hidden"
           onChange={(e) => setFileName(e.target.files[0]?.name || "")} />
       </label>
@@ -88,11 +88,11 @@ export default function JoinCaptainForm() {
             <Check size={36} strokeWidth={2.5} />
           </div>
           <h2 className="text-3xl font-black text-white tracking-tight">Application <span className="text-yellow-400 italic">Submitted!</span></h2>
-          <p className="text-gray-500 text-sm leading-relaxed">
+          <p className="text-white text-sm leading-relaxed">
             Thanks for joining CabIndia! Our team will review your application and contact you within <span className="text-white font-semibold">48 hours</span>.
           </p>
           <div className="h-px w-full bg-gradient-to-r from-transparent via-yellow-400/20 to-transparent" />
-          <p className="text-gray-700 text-xs tracking-wide">No joining fee · Fully verified process</p>
+          <p className="text-white text-xs tracking-wide">No joining fee · Fully verified process</p>
         </div>
       </div>
     );
@@ -108,7 +108,7 @@ export default function JoinCaptainForm() {
           <h1 className="text-3xl font-black text-white tracking-tight">
             Become a <span className="text-yellow-400 italic">Captain</span>
           </h1>
-          <p className="text-gray-600 text-sm mt-2">Complete all 5 steps to submit your application</p>
+          <p className="text-white text-sm mt-2">Complete all 5 steps to submit your application</p>
         </div>
 
         {/* ── Step indicator ── */}
@@ -128,15 +128,15 @@ export default function JoinCaptainForm() {
               <div key={s.id} className="flex flex-col items-center gap-1.5 z-10">
                 <div className={[
                   "w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-300",
-                  done   ? "bg-yellow-400 border-yellow-400 text-gray-950 shadow-[0_0_16px_rgba(250,204,21,0.4)]"
+                  done   ? "bg-yellow-400 border-yellow-400 text-white shadow-[0_0_16px_rgba(250,204,21,0.4)]"
                          : active ? "bg-gray-950 border-yellow-400 text-yellow-400 shadow-[0_0_12px_rgba(250,204,21,0.2)]"
-                                  : "bg-gray-900 border-gray-700 text-gray-600",
+                                  : "bg-gray-900 border-gray-700 text-white",
                 ].join(" ")}>
                   {done ? <Check size={16} strokeWidth={3} /> : <Icon size={16} />}
                 </div>
                 <span className={[
                   "text-[9px] font-bold tracking-[0.1em] uppercase hidden sm:block",
-                  active ? "text-yellow-400" : done ? "text-yellow-400/60" : "text-gray-700",
+                  active ? "text-yellow-400" : done ? "text-yellow-400/60" : "text-white",
                 ].join(" ")}>{s.label}</span>
               </div>
             );
@@ -150,7 +150,7 @@ export default function JoinCaptainForm() {
           {/* Step label */}
           <div className="flex items-center justify-between mb-6">
             <div>
-              <p className="text-gray-600 text-xs font-bold tracking-widest uppercase">Step {step} of 5</p>
+              <p className="text-white text-xs font-bold tracking-widest uppercase">Step {step} of 5</p>
               <h2 className="text-xl font-black text-white tracking-tight mt-0.5">{STEPS[step-1].label}</h2>
             </div>
             <div className="w-10 h-10 rounded-xl bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-400">
@@ -172,7 +172,7 @@ export default function JoinCaptainForm() {
                 <Label required>Password</Label>
                 <div className="relative">
                   <Input type={showPwd?"text":"password"} placeholder="Min 8 characters" className="pr-10" onChange={e=>set("password",e.target.value)} />
-                  <button type="button" onClick={()=>setShowPwd(v=>!v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-400 transition-colors">
+                  <button type="button" onClick={()=>setShowPwd(v=>!v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-white hover:text-white transition-colors">
                     {showPwd ? <EyeOff size={15}/> : <Eye size={15}/>}
                   </button>
                 </div>
@@ -181,7 +181,7 @@ export default function JoinCaptainForm() {
                 <Label required>Confirm Password</Label>
                 <div className="relative">
                   <Input type={showCPwd?"text":"password"} placeholder="Repeat password" className="pr-10" onChange={e=>set("cpassword",e.target.value)} />
-                  <button type="button" onClick={()=>setShowCPwd(v=>!v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-400 transition-colors">
+                  <button type="button" onClick={()=>setShowCPwd(v=>!v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-white hover:text-white transition-colors">
                     {showCPwd ? <EyeOff size={15}/> : <Eye size={15}/>}
                   </button>
                 </div>
@@ -190,7 +190,7 @@ export default function JoinCaptainForm() {
                 <div>
                   <Label required>Phone Number</Label>
                   <div className="flex gap-2">
-                    <span className="flex items-center px-3 bg-gray-800 border border-gray-700 rounded-xl text-xs text-gray-400 font-bold whitespace-nowrap">🇮🇳 +91</span>
+                    <span className="flex items-center px-3 bg-gray-800 border border-gray-700 rounded-xl text-xs text-white font-bold whitespace-nowrap">🇮🇳 +91</span>
                     <Input placeholder="98765 43210" onChange={e=>set("phone",e.target.value)} />
                   </div>
                 </div>
@@ -229,9 +229,9 @@ export default function JoinCaptainForm() {
               <label className="flex items-center gap-3 cursor-pointer group">
                 <div onClick={()=>setSameAddr(v=>!v)}
                   className={`w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all ${sameAddr?"bg-yellow-400 border-yellow-400":"border-gray-700 bg-gray-800 group-hover:border-gray-500"}`}>
-                  {sameAddr && <Check size={12} className="text-gray-950" strokeWidth={3}/>}
+                  {sameAddr && <Check size={12} className="text-white" strokeWidth={3}/>}
                 </div>
-                <span className="text-sm text-gray-400">Permanent address same as present address</span>
+                <span className="text-sm text-white">Permanent address same as present address</span>
               </label>
 
               {!sameAddr && (
@@ -304,7 +304,7 @@ export default function JoinCaptainForm() {
                           className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all ${form.pollutionValid===v?"border-yellow-400":"border-gray-700"}`}>
                           {form.pollutionValid===v && <div className="w-2 h-2 rounded-full bg-yellow-400"/>}
                         </div>
-                        <span className="text-sm text-gray-400">{v}</span>
+                        <span className="text-sm text-white">{v}</span>
                       </label>
                     ))}
                   </div>
@@ -318,7 +318,7 @@ export default function JoinCaptainForm() {
                           className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all ${form.insuranceValid===v?"border-yellow-400":"border-gray-700"}`}>
                           {form.insuranceValid===v && <div className="w-2 h-2 rounded-full bg-yellow-400"/>}
                         </div>
-                        <span className="text-sm text-gray-400">{v}</span>
+                        <span className="text-sm text-white">{v}</span>
                       </label>
                     ))}
                   </div>
@@ -331,7 +331,7 @@ export default function JoinCaptainForm() {
           {step === 5 && (
             <div className="flex flex-col gap-4">
               <SectionTitle>Upload Documents</SectionTitle>
-              <p className="text-gray-600 text-xs -mt-2 mb-1">Upload clear photos or scans. Accepted: JPG, PNG, PDF (max 5MB each)</p>
+              <p className="text-white text-xs -mt-2 mb-1">Upload clear photos or scans. Accepted: JPG, PNG, PDF (max 5MB each)</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <FileField label="Selfie Photo *"           name="selfie"       hint="Clear face photo" />
                 <FileField label="Aadhaar Card *"           name="aadhaar"      hint="Front side" />
@@ -344,7 +344,7 @@ export default function JoinCaptainForm() {
               </div>
               <div className="mt-2 bg-yellow-400/5 border border-yellow-400/15 rounded-2xl p-4">
                 <p className="text-yellow-400/80 text-xs font-semibold mb-1">Before you submit</p>
-                <p className="text-gray-600 text-xs leading-relaxed">
+                <p className="text-white text-xs leading-relaxed">
                   All documents will be verified by our team within 48 hours. Ensure all uploads are legible and not expired. Your data is encrypted and stored securely.
                 </p>
               </div>
@@ -359,20 +359,20 @@ export default function JoinCaptainForm() {
               className={[
                 "flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold border transition-all",
                 step === 1
-                  ? "text-gray-700 border-gray-800 cursor-not-allowed"
-                  : "text-gray-300 border-gray-700 hover:border-gray-500 hover:text-white active:scale-95",
+                  ? "text-white border-gray-800 cursor-not-allowed"
+                  : "text-white border-gray-700 hover:border-gray-500 hover:text-white active:scale-95",
               ].join(" ")}
             >
               <ChevronLeft size={16}/> Back
             </button>
 
-            <span className="text-gray-700 text-xs font-bold tracking-widest">
+            <span className="text-white text-xs font-bold tracking-widest">
               {step} / 5
             </span>
 
             <button
               onClick={next}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-black bg-yellow-400 hover:bg-yellow-300 text-gray-950 transition-all active:scale-95 shadow-[0_4px_20px_rgba(250,204,21,0.25)] hover:shadow-[0_4px_28px_rgba(250,204,21,0.4)] relative overflow-hidden group"
+              className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-black bg-yellow-400 hover:bg-yellow-300 text-white transition-all active:scale-95 shadow-[0_4px_20px_rgba(250,204,21,0.25)] hover:shadow-[0_4px_28px_rgba(250,204,21,0.4)] relative overflow-hidden group"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500 pointer-events-none"/>
               {step === 5 ? "Submit Application" : "Next Step"}
