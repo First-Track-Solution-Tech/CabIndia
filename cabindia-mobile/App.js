@@ -9,7 +9,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Font from 'expo-font';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 
 import { COLORS, SIZES } from './src/styles/theme';
 import { FONTS } from './src/styles/theme';
@@ -146,9 +146,7 @@ export default function App() {
     async function loadFonts() {
       try {
         console.log('🔤 Loading fonts...');
-        await Font.loadAsync({
-          ...Ionicons.font,
-        });
+        await Font.loadAsync({ ...Ionicons.font, ...FontAwesome5.font, });
         setFontsLoaded(true);
         console.log('✅ Fonts loaded successfully');
       } catch (error) {
