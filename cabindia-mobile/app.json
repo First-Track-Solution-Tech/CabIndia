@@ -1,4 +1,3 @@
-// cabindia-mobile/app.json (UPDATED)
 {
   "expo": {
     "name": "CabIndia",
@@ -12,7 +11,9 @@
       "resizeMode": "cover",
       "backgroundColor": "#0a0a0a"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "bundleIdentifier": "com.cabindia.app",
       "supportsTablet": true,
@@ -46,7 +47,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "3acfa515-0921-4a13-a693-14256129f85b"
+        "projectId": "701f5201-64b7-49ff-bf29-2bf40347194d"
       },
       "apiUrl": "https://cabindia-mobile.onrender.com",
       "socketUrl": "https://cabindia-mobile.onrender.com",
@@ -70,6 +71,6 @@
       "expo-asset",
       "expo-build-properties"
     ],
-    "owner": "soul2000ps-team"
+    "owner": "first_track_solution"
   }
 }
