@@ -282,14 +282,11 @@ const Header = () => {
       <header className="sticky top-0 z-50 bg-gray-900 border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <Link to="/" className="flex items-center gap-2">
+            {/* Logo - Always show full brand name and logo on all screen sizes */}
+            <Link to="/" className="flex items-center gap-2 flex-shrink-0">
               <img className="h-10 w-auto" src="/logo.png" alt="CabIndia" />
-              <span className="text-xl font-bold hidden sm:block">
-                <span className="text-white">CAB</span>
-                <span className="text-orange-400">IN</span>
-                <span className="text-white">D</span>
-                <span className="text-green-400">IA</span>
+              <span className="text-xl font-bold text-white whitespace-nowrap">
+                CAB<span className="text-orange-400">IN</span>D<span className="text-green-400">IA</span>
               </span>
             </Link>
 
