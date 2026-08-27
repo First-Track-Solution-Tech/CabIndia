@@ -6,7 +6,8 @@ const {
   applyAsCaptain,
   getDriverStats,
   updateDriverStatus,
-  getDriverRideHistory
+  getDriverRideHistory,
+  getDriverStatus
 } = require('../controllers/driverController');
 
 // @route   POST /api/drivers/apply
@@ -15,6 +16,7 @@ const {
 router.post('/apply', auth, applyAsCaptain);
 
 // @route   GET /api/drivers/stats
+router.get('/status', auth, getDriverStatus);
 // @desc    Get driver statistics
 // @access  Private
 router.get('/stats', auth, getDriverStats);

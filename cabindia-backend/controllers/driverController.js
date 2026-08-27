@@ -122,6 +122,39 @@ exports.getDriverStats = async (req, res) => {
   }
 };
 
+// @route   GET /api/drivers/status
+// @desc    Get driver registration/verification status
+// @access  Private
+exports.getDriverStatus = async (req, res) => {
+  if (!req.user || !req.user.id) {
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+
+  const userId = req.user.id;
+
+  try {
+    const [driver] = await db.execute(
+      'SELECT status, is_available FROM drivers WHERE user_id = ?',
+      [userId]
+    );
+
+    if (driver.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Driver profile not found. Please apply to become a captain.'
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      status: driver[0].status,
+      isAvailable: driver[0].is_available || false,
+    });
+  } catch (error) {
+    console.error('Error fetching driver status:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
 // @route   POST /api/drivers/status
 // @desc    Update driver online/offline status
 // @access  Private
