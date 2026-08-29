@@ -63,7 +63,7 @@ const io = new Server(server, {
 // Socket.IO connection handling
 io.on('connection', (socket) => {
   console.log('User connected:', socket.id);
-  
+
   socket.on('join_ride', (rideId) => {
     socket.join(`ride_${rideId}`);
     console.log(`Socket ${socket.id} joined ride room: ride_${rideId}`);
@@ -110,30 +110,30 @@ app.set('socketio', io);
 // @access  Public
 app.post('/api/rides/distance', async (req, res) => {
   const { originLat, originLon, destLat, destLon } = req.body;
-  
+
   if (!originLat || !originLon || !destLat || !destLon) {
-    return res.status(400).json({ 
-      success: false, 
-      message: 'Missing required coordinates: originLat, originLon, destLat, destLon' 
+    return res.status(400).json({
+      success: false,
+      message: 'Missing required coordinates: originLat, originLon, destLat, destLon'
     });
   }
 
   try {
     const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
-    
+
     if (!GOOGLE_MAPS_API_KEY) {
       console.error('Google Maps API key not configured');
-      return res.status(500).json({ 
-        success: false, 
-        message: 'Google Maps API key not configured' 
+      return res.status(500).json({
+        success: false,
+        message: 'Google Maps API key not configured'
       });
     }
 
     const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${originLat},${originLon}&destinations=${destLat},${destLon}&key=${GOOGLE_MAPS_API_KEY}`;
-    
+
     const response = await fetch(url);
     const data = await response.json();
-    
+
     if (data.rows && data.rows.length > 0 && data.rows[0].elements && data.rows[0].elements.length > 0) {
       const element = data.rows[0].elements[0];
       if (element.status === 'OK') {
@@ -145,27 +145,27 @@ app.post('/api/rides/distance', async (req, res) => {
           durationText: element.duration.text,
         });
       } else if (element.status === 'ZERO_RESULTS') {
-        return res.status(400).json({ 
-          success: false, 
-          message: 'No route found between the two locations' 
+        return res.status(400).json({
+          success: false,
+          message: 'No route found between the two locations'
         });
       } else {
-        return res.status(400).json({ 
-          success: false, 
-          message: `Distance API error: ${element.status}` 
+        return res.status(400).json({
+          success: false,
+          message: `Distance API error: ${element.status}`
         });
       }
     }
-    
-    res.status(400).json({ 
-      success: false, 
-      message: 'Could not calculate distance' 
+
+    res.status(400).json({
+      success: false,
+      message: 'Could not calculate distance'
     });
   } catch (error) {
     console.error('Distance calculation error:', error);
-    res.status(500).json({ 
-      success: false, 
-      message: 'Server error calculating distance' 
+    res.status(500).json({
+      success: false,
+      message: 'Server error calculating distance'
     });
   }
 });
@@ -225,8 +225,8 @@ app.put('/api/user/profile', auth, async (req, res) => {
       { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
     );
 
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       user: updated[0],
       token: token
     });
@@ -348,8 +348,8 @@ app.get('/api/drivers/vehicle', auth, async (req, res) => {
     );
 
     if (vehicle.length === 0) {
-      return res.json({ 
-        success: true, 
+      return res.json({
+        success: true,
         vehicle: {
           vehicleType: 'Sedan',
           vehicleModel: '',
@@ -387,15 +387,15 @@ app.get('/api/drivers/vehicle', auth, async (req, res) => {
 // @access  Private
 app.put('/api/drivers/vehicle', auth, async (req, res) => {
   const userId = req.user.id;
-  const { 
-    vehicleType, 
-    vehicleModel, 
-    licensePlate, 
+  const {
+    vehicleType,
+    vehicleModel,
+    licensePlate,
     vehicleColor,
     rcNumber,
     chassisNumber,
     pollutionValid,
-    insuranceValid 
+    insuranceValid
   } = req.body;
 
   if (!vehicleModel || !licensePlate) {
@@ -418,7 +418,7 @@ app.put('/api/drivers/vehicle', auth, async (req, res) => {
       // Insert new vehicle
       await db.execute(
         `INSERT INTO vehicles (
-          driver_id, type, model, license_plate, make, 
+          driver_id, type, model, license_plate, make,
           rc_number, chassis_number, pollution_valid, insurance_valid
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
@@ -436,7 +436,7 @@ app.put('/api/drivers/vehicle', auth, async (req, res) => {
     } else {
       // Update existing vehicle
       await db.execute(
-        `UPDATE vehicles SET 
+        `UPDATE vehicles SET
           type = ?, model = ?, license_plate = ?, make = ?,
           rc_number = ?, chassis_number = ?,
           pollution_valid = ?, insurance_valid = ?
@@ -463,6 +463,99 @@ app.put('/api/drivers/vehicle', auth, async (req, res) => {
 });
 
 // ============================================
+// DRIVER BANK DETAILS ROUTES
+// ============================================
+
+// @route   GET /api/drivers/bank-details
+// @desc    Get driver bank details
+// @access  Private
+app.get('/api/drivers/bank-details', auth, async (req, res) => {
+  const userId = req.user.id;
+
+  try {
+    const [driver] = await db.execute('SELECT id FROM drivers WHERE user_id = ?', [userId]);
+    if (driver.length === 0) {
+      return res.status(404).json({ success: false, message: 'Driver profile not found' });
+    }
+
+    const driverId = driver[0].id;
+
+    const [bankDetails] = await db.execute(
+      'SELECT * FROM bank_details WHERE driver_id = ?',
+      [driverId]
+    );
+
+    if (bankDetails.length === 0) {
+      return res.json({
+        success: true,
+        bankDetails: {
+          accountHolderName: '',
+          accountNumber: '',
+          ifsc: '',
+          bankName: '',
+          verified: false,
+        }
+      });
+    }
+
+    const data = {
+      accountHolderName: bankDetails[0].account_holder_name || '',
+      accountNumber: bankDetails[0].account_number || '',
+      ifsc: bankDetails[0].ifsc || '',
+      bankName: bankDetails[0].bank_name || '',
+      verified: bankDetails[0].verified === 1,
+    };
+
+    res.json({ success: true, bankDetails: data });
+  } catch (error) {
+    console.error('Bank details fetch error:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
+
+// @route   PUT /api/drivers/bank-details
+// @desc    Update driver bank details
+// @access  Private
+app.put('/api/drivers/bank-details', auth, async (req, res) => {
+  const userId = req.user.id;
+  const { accountHolderName, accountNumber, ifsc, bankName } = req.body;
+
+  if (!accountHolderName || !accountNumber || !ifsc || !bankName) {
+    return res.status(400).json({ success: false, message: 'All bank details fields are required' });
+  }
+
+  try {
+    const [driver] = await db.execute('SELECT id FROM drivers WHERE user_id = ?', [userId]);
+    if (driver.length === 0) {
+      return res.status(404).json({ success: false, message: 'Driver profile not found' });
+    }
+
+    const driverId = driver[0].id;
+
+    const [existing] = await db.execute('SELECT id FROM bank_details WHERE driver_id = ?', [driverId]);
+
+    if (existing.length === 0) {
+      await db.execute(
+        `INSERT INTO bank_details (driver_id, account_holder_name, account_number, ifsc, bank_name)
+         VALUES (?, ?, ?, ?, ?)`,
+        [driverId, accountHolderName, accountNumber, ifsc, bankName]
+      );
+    } else {
+      await db.execute(
+        `UPDATE bank_details SET account_holder_name = ?, account_number = ?, ifsc = ?, bank_name = ?
+         WHERE driver_id = ?`,
+        [accountHolderName, accountNumber, ifsc, bankName, driverId]
+      );
+    }
+
+    res.json({ success: true, message: 'Bank details updated successfully' });
+  } catch (error) {
+    console.error('Bank details update error:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
+
+// ============================================
 // USER SETTINGS ROUTES
 // ============================================
 
@@ -479,8 +572,8 @@ app.get('/api/user/settings', auth, async (req, res) => {
       // Create default settings for new user
       await db.execute(
         `INSERT INTO user_settings (
-          user_id, notifications, dark_mode, location_tracking, 
-          share_data, auto_book, auto_accept, sound_effects, vibration, 
+          user_id, notifications, dark_mode, location_tracking,
+          share_data, auto_book, auto_accept, sound_effects, vibration,
           language, measurement_unit
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [userId, 1, 1, 1, 0, 0, 0, 1, 1, 'English', 'km']
@@ -502,17 +595,17 @@ app.get('/api/user/settings', auth, async (req, res) => {
 // @access  Private
 app.post('/api/user/settings', auth, async (req, res) => {
   const userId = req.user.id;
-  const { 
-    notifications, 
-    darkMode, 
-    locationTracking, 
-    shareData, 
+  const {
+    notifications,
+    darkMode,
+    locationTracking,
+    shareData,
     autoBook,
     autoAccept,
     soundEffects,
     vibration,
     language,
-    measurementUnit 
+    measurementUnit
   } = req.body;
 
   try {
@@ -568,8 +661,8 @@ app.post('/api/user/settings', auth, async (req, res) => {
       // Insert new settings
       await db.execute(
         `INSERT INTO user_settings (
-          user_id, notifications, dark_mode, location_tracking, 
-          share_data, auto_book, auto_accept, sound_effects, vibration, 
+          user_id, notifications, dark_mode, location_tracking,
+          share_data, auto_book, auto_accept, sound_effects, vibration,
           language, measurement_unit
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
@@ -616,7 +709,7 @@ app.use('/api/drivers', driverRoutes);
 // HEALTH CHECK / TEST ROUTE
 // ============================================
 app.get('/', (req, res) => {
-  res.json({ 
+  res.json({
     message: 'CabIndia Backend API is running!',
     version: '1.0.0',
     endpoints: {
@@ -626,7 +719,8 @@ app.get('/', (req, res) => {
       drivers: '/api/drivers',
       distance: '/api/rides/distance',
       user: '/api/user/profile, /api/user/payment-methods, /api/user/settings',
-      vehicle: '/api/drivers/vehicle'
+      vehicle: '/api/drivers/vehicle',
+      bankDetails: '/api/drivers/bank-details'
     }
   });
 });
@@ -635,9 +729,9 @@ app.get('/', (req, res) => {
 // 404 HANDLER - Undefined Routes
 // ============================================
 app.use((req, res) => {
-  res.status(404).json({ 
-    success: false, 
-    message: `Route ${req.method} ${req.url} not found` 
+  res.status(404).json({
+    success: false,
+    message: `Route ${req.method} ${req.url} not found`
   });
 });
 
@@ -646,10 +740,10 @@ app.use((req, res) => {
 // ============================================
 app.use((err, req, res, next) => {
   console.error('Error:', err);
-  res.status(500).json({ 
-    success: false, 
+  res.status(500).json({
+    success: false,
     message: 'Internal Server Error',
-    error: err.message 
+    error: err.message
   });
 });
 
@@ -667,6 +761,7 @@ server.listen(PORT, () => {
   console.log(`📏 Distance endpoint at: http://localhost:${PORT}/api/rides/distance`);
   console.log(`👤 User profile routes at: http://localhost:${PORT}/api/user/`);
   console.log(`🚗 Vehicle routes at: http://localhost:${PORT}/api/drivers/vehicle`);
+  console.log(`🏦 Bank details routes at: http://localhost:${PORT}/api/drivers/bank-details`);
   console.log(`⚙️  Settings routes at: http://localhost:${PORT}/api/user/settings`);
   console.log(`🌐 CORS allowed origins: ${process.env.CORS_ORIGIN || '*'}`);
 });
