@@ -2,7 +2,7 @@ const API_URL = import.meta.env.VITE_APP_API_URL; //Backend BASE URL
 
 const sendContactUs = async (payload) => {
     try {
-        const response = await fetch(`${API_URL}/api/contact`, {
+        const response = await fetch(`${API_URL}/contact`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
