@@ -51,27 +51,28 @@ export default function ContactPage() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
-    try {
+      e.preventDefault();
+      
+      // Validate form
+      if (!form.name || !form.email || !form.phone || !form.message) {
+          toast.error('Please fill in all fields');
+          return;
+      }
+      
       setLoading(true);
-      
-      // 2. Use 'form' instead of 'formData', as that is your active state variable
-      // Note: Ensure `sendContactUs` is imported at the top of your file!
-      await sendContactUs(form); //send actual form data to backend
-      
-      // 3. Trigger your success UI by setting submitted to true 
-      // (This replaces the commented out setFormData logic)
-      setSubmitted(true); 
-      
-      // Note: Ensure `toast` is imported (e.g., from 'react-hot-toast' or 'react-toastify')
-      toast.success("Message sent successfully");
-    } catch (error) {
-      console.error(error.message || "Something Went Wrong");
-      toast.error(error.message || "Failed to send message")
-    } finally {
-      setLoading(false); //finally block ensures loading is reset regardless of success or failure(alwaye executed with try and catch block)
-    }
-  }
+      try {
+          const result = await sendContactUs(form);
+          setSubmitted(true);
+          toast.success("✅ Message sent successfully! We'll get back to you within 2 hours.");
+          setForm(INITIAL_CONTACT_FORM_STATE);
+      } catch (error) {
+          console.error('Contact form error:', error);
+          const errorMessage = error.message || "Failed to send message. Please try again.";
+          toast.error(errorMessage);
+      } finally {
+          setLoading(false);
+      }
+  };
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">
