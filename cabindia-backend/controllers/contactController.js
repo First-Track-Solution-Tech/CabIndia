@@ -14,7 +14,7 @@ exports.submitContact = async (req, res) => {
   try {
     const data = sendContactUsMessageSchema.parse(req.body);
     const template= contactUsEmailTemplate(data);
-    await sendEmail(data.email, template);
+    await sendEmail(process.env.CONTACT_SERVICE_EMAIL, template);
     res.status(200).json({ message: 'Contact form submitted successfully', success: true });
   } catch (err) {
     console.error(err);
