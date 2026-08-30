@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../config/db');
 const axios = require('axios');
+const sendEmail = require('../services/nodemailer/send_email.nodemailer.service');
 
 // @route   POST /api/auth/register
 // @desc    Register a new user
@@ -285,10 +286,16 @@ exports.forgotPassword = async (req, res) => {
       [resetToken, user.id]
     );
 
-    // Send reset email (you need to implement this)
-    // const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
-    // Use your email service to send the reset link
-    
+    const resetBaseUrl = process.env.PASSWORD_RESET_URL || process.env.FRONTEND_URL || 'https://cabindia.online/reset-password';
+    const resetLink = resetBaseUrl + '?token=' + encodeURIComponent(resetToken);
+    await sendEmail(user.email, {
+      subject: 'CabIndia Password Reset Request',
+      html: '<div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;color:#111827">' +
+        '<h2 style="color:#ca8a04">CabIndia Password Reset</h2>' +
+        '<p>We received a request to reset your CabIndia password.</p>' +
+        '<p><a href="' + resetLink + '" style="display:inline-block;background:#facc15;color:#111827;padding:12px 20px;border-radius:6px;text-decoration:none;font-weight:bold">Reset Password</a></p>' +
+        '<p>This link expires in 1 hour. If you did not request this, you can safely ignore this email.</p></div>'
+    });
     res.json({ 
       success: true, 
       message: 'Password reset link sent to your email. Please check your inbox.' 
