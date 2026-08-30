@@ -725,6 +725,15 @@ app.get('/', (req, res) => {
   });
 });
 
+// Add this near your other routes
+app.get('/api/test', (req, res) => {
+    res.json({ 
+        success: true, 
+        message: 'API is working!',
+        environment: process.env.NODE_ENV || 'development'
+    });
+});
+
 // ============================================
 // 404 HANDLER - Undefined Routes
 // ============================================

@@ -32,4 +32,16 @@ api.interceptors.response.use(
   }
 );
 
+// Add a test function to verify API connection
+export const testApiConnection = async () => {
+  try {
+    const response = await api.get('/api/test');
+    console.log('API Test:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('API Test failed:', error);
+    throw error;
+  }
+};
+
 export default api;
